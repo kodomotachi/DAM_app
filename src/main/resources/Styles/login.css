@@ -1,0 +1,8 @@
+.login_container {
+    -fx-background-color: #EEEEEE;
+}
+
+.login_logo_container {
+    -fx-background-color: #132A13;
+    -fx-alignment: center;
+}
