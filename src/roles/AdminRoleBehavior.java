@@ -20,9 +20,7 @@ public class AdminRoleBehavior implements RoleBehavior {
     public boolean canRevokePermission() {
         return true;
     }
-    public boolean canChangePermission() {
-        return true;
-    }
+
     public boolean canMoveStore() {
         return true;
     }

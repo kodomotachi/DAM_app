@@ -1,30 +1,26 @@
 package roles;
-
 import interfaces.RoleBehavior;
 
 public class ContributorRoleBehavior implements RoleBehavior {
-
-    @Override
-    public boolean canGrantPermission() {
-        return false;
+    public boolean canRead() {
+        return true;
     }
-    @Override
     public boolean canAdd() {
         return true;
     }
-
-    @Override
     public boolean canModify() {
         return true;
     }
-
-    @Override
     public boolean canDelete() {
-        return true;
+        return false;
     }
-
-    @Override
-    public boolean canRead() {
-        return true;
+    public boolean canGrantPermission() {
+        return false;
+    }
+    public boolean canRevokePermission() {
+        return false;
+    }
+    public boolean canMoveStore() {
+        return false;
     }
 }

@@ -1,4 +1,4 @@
-package tests;
+package Tests;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -12,22 +12,22 @@ public class InitDataTest {
     
     @Test
     public void initUserDataTest() {
-        User user = new User("sinhdangphuoctruong@gmail.com", "sinh270704");
+        User user = new User("Sinh");
 
-        Assert.assertNull(user.getDrives());
+        Assert.assertNotNull(user.getStores());
     }
 
     @Test
     public void initDriveDataTest() {
-        Drive drive = new Drive("Google Drive");
+        Drive drive = new Drive("Google Drive", new User("Sinh"));
 
-        Assert.assertNotNull(drive.getChildStores());
+        Assert.assertTrue(drive.getChildStores().isEmpty());
         Assert.assertNotNull(drive.getPermissions());
     }
 
     @Test
     public void initFolderDataTest() {
-        Folder folder = new Folder("Design Documents");
+        Folder folder = new Folder("Design Documents", new User("Sinh"));
 
         Assert.assertNotNull(folder.getChildStores());
         Assert.assertNotNull(folder.getPermissions());
@@ -35,7 +35,7 @@ public class InitDataTest {
 
     @Test
     public void initFileDataTest() {
-        File file = new File("Marketing Materials.pdf");
+        File file = new File("Marketing Materials.txt", new User("Sinh"), "Content");
 
         Assert.assertNotNull(file.getPermissions());
     }

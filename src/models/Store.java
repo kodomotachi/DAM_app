@@ -1,17 +1,22 @@
 package models;
-import java.util.List;
 import java.util.ArrayList;
 import roles.Role;
+import java.util.Date;
 
-public abstract class Store {
+public abstract class Store implements Comparable<Store>{
     protected String name;
     protected User owner;
-    protected List<Permission>  permissions;
-    protected boolean isDeleted = false;
+    protected Date createdDate;
+    protected boolean isDeleted;
+    protected ArrayList<UserPermission> permissions;
     
-    public Store(String name) {
+    public Store(String name,User owner) {
         this.name = name;
-        this.permissions = new ArrayList<Permission>();
+        this.owner = owner;
+        this.createdDate = new Date();
+        this.isDeleted = false;
+        this.permissions = new ArrayList<UserPermission>();
+        this.addPermission(owner, Role.ADMIN);
     }
     public String getName() {
         return name;
@@ -25,34 +30,48 @@ public abstract class Store {
     public void setOwner(User owner) {
         this.owner = owner;
     }
-
-    public void markAsDeleted() {
-        isDeleted = true;
+    public Date getCreatedDate() {
+        return createdDate;
     }
     public boolean isDeleted() {
         return isDeleted;
     }
-    public List<Permission> getPermissions() {
-        return permissions;
-    }
-    public void setPermissions(List<Permission> permissions) {
+    public void setPermissions(ArrayList<UserPermission> permissions) {
         this.permissions = permissions;
     }
-    public void grantPermission(User user, Role role) {
-        permissions.removeIf(up -> up.getUser().equals(user));
-        permissions.add(new Permission(user, this, role));
-
-        propagatePermission(user, role);
+    public ArrayList<UserPermission> getPermissions() {
+        return permissions;
     }
-    public Role getPermission(User user) {
-        for (Permission permission : permissions) {
-            if (permission.getUser().equals(user)) {
+    public Role checkPermission(User user) {
+        for(UserPermission permission: permissions) {
+            if(permission.getUser().equals(user)) {
                 return permission.getRole();
             }
         }
         return null;
     }
-
-    public abstract void propagatePermission(User user, Role role);
+    public void addPermission(User user, Role role) {
+        for(UserPermission permission: permissions) {
+            if(permission.getUser().equals(user)) {
+                throw new IllegalArgumentException("User already has permission. " + permission.getUser().getEmail()+": "+permission.getRole());
+            }
+        }
+        UserPermission permission = new UserPermission(user, this, role);
+        permissions.add(permission);
+    }
+    public void removePermission(User user) {
+        for(UserPermission permission: permissions) {
+            if(permission.getUser().equals(user)) {
+                permissions.remove(permission);
+                return;
+            }
+        }
+    }
+    @Override
+    public int compareTo(Store other){
+        return this.name.compareTo(other.getName());
+    }
+    
+    public abstract void propagatePermission();
     public abstract void delete();
 }

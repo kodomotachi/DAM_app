@@ -1,38 +1,17 @@
 package models;
+import java.util.ArrayList;
 
-import java.util.List;
-import roles.Role;
+public class Folder extends Container{
+    private String parentName;
 
-public class Folder extends Container {
-    public Folder(String name) {
-        super(name);
+    public Folder(String name, User owner) {
+        super(name, owner);
+        childStores = new ArrayList<Store>();
     }
-    public List<Store> getChildStores() {
-        return childStores;
+    public String getParentName() {
+        return parentName;
     }
-    public void setChildStores(List<Store> childStores) {
-        this.childStores = childStores;
+    public void setParentName(String parentName) {
+        this.parentName = parentName;
     }
-    public void addStore(Store store) {
-        childStores.add(store);
-    }
-    public boolean contains(Store store) {
-        return childStores.contains(store);
-    }
-
-    @Override
-    public void propagatePermission(User user, Role role) {
-        for (Store store : childStores) {
-            store.grantPermission(user, role);
-            store.propagatePermission(user, role);
-        }
-    }
-    @Override
-    public void delete() {
-        for (Store store : childStores) {
-            store.delete();
-        }
-        markAsDeleted();
-    }
-
 }

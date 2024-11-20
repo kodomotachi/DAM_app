@@ -1,31 +1,27 @@
 package roles;
-
 import interfaces.RoleBehavior;
 
-public class ReaderRoleBehavior implements RoleBehavior{
-
-    @Override
-    public boolean canGrantPermission() {
-        return false;
+public class ReaderRoleBehavior implements RoleBehavior {
+    public boolean canRead() {
+        return true;
     }
-
-    @Override
     public boolean canAdd() {
         return false;
     }
-
-    @Override
     public boolean canModify() {
         return false;
     }
-
-    @Override
     public boolean canDelete() {
         return false;
     }
+    public boolean canGrantPermission() {
+        return false;
+    }
+    public boolean canRevokePermission() {
+        return false;
+    }
 
-    @Override
-    public boolean canRead() {
-        return true;
+    public boolean canMoveStore() {
+        return false;
     }
 }

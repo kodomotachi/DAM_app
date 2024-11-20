@@ -1,9 +1,12 @@
 package models;
-import roles.Role;
-public class File extends Store {
+
+public class File extends Store{
+    private String parentName;
     private String content;
-    public File(String name) {
-        super(name);
+
+    public File(String name, User owner, String content) {
+        super(name, owner);
+        this.content = content;
     }
     public String getContent() {
         return content;
@@ -11,12 +14,15 @@ public class File extends Store {
     public void setContent(String content) {
         this.content = content;
     }
-    @Override
-    public void propagatePermission(User user, Role role) {
-        // Do nothing
+    public String getParentName() {
+        return parentName;
+    }
+    public void setParentName(String parentName) {
+        this.parentName = parentName;
     }
     @Override
+    public void propagatePermission() {}
     public void delete() {
-        markAsDeleted();
+        isDeleted = true;
     }
 }
