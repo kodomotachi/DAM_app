@@ -1,6 +1,6 @@
-package models;
+package com.example.demo_testing.models;
 
-import roles.Role;
+import com.example.demo_testing.roles.Role;
 
 public class UserPermission {
     private User user;

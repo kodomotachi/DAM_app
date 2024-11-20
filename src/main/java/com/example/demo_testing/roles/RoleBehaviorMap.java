@@ -1,8 +1,8 @@
-package roles;
+package com.example.demo_testing.roles;
 
 import java.util.HashMap;
 import java.util.Map;
-import interfaces.RoleBehavior;
+import com.example.demo_testing.interfaces.RoleBehavior;
 
 public class RoleBehaviorMap {
     public static final Map<Role, RoleBehavior> map = new HashMap<>();

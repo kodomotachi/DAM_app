@@ -1,4 +1,4 @@
-package models;
+package com.example.demo_testing.models;
 
 public class File extends Store{
     private String parentName;

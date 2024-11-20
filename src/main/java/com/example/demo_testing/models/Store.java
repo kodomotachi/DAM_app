@@ -1,6 +1,6 @@
-package models;
+package com.example.demo_testing.models;
 import java.util.ArrayList;
-import roles.Role;
+import com.example.demo_testing.roles.Role;
 import java.util.Date;
 
 public abstract class Store implements Comparable<Store>{

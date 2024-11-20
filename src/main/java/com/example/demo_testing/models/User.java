@@ -1,9 +1,9 @@
-package models;
+package com.example.demo_testing.models;
 import java.util.ArrayList;
 
-import interfaces.RoleBehavior;
-import roles.Role;
-import roles.RoleBehaviorMap;
+import com.example.demo_testing.interfaces.RoleBehavior;
+import com.example.demo_testing.roles.Role;
+import com.example.demo_testing.roles.RoleBehaviorMap;
 
 public class User implements Comparable<User> {
     private String email;

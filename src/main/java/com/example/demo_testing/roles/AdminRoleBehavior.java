@@ -1,5 +1,5 @@
-package roles;
-import interfaces.RoleBehavior;
+package com.example.demo_testing.roles;
+import com.example.demo_testing.interfaces.RoleBehavior;
 
 public class AdminRoleBehavior implements RoleBehavior {
     public boolean canRead() {
