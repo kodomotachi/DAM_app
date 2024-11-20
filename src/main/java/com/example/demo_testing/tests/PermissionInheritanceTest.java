@@ -1,14 +1,14 @@
-package Tests;
+package com.example.demo_testing.tests;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import roles.Role;
-import models.Drive;
-import models.File;
-import models.Folder;
-import models.User;
+import com.example.demo_testing.roles.Role;
+import com.example.demo_testing.models.Drive;
+import com.example.demo_testing.models.File;
+import com.example.demo_testing.models.Folder;
+import com.example.demo_testing.models.User;
 
 public class PermissionInheritanceTest {
 
